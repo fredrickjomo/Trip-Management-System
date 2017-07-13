@@ -1,53 +1,52 @@
+<?php
+include 'DbConnect.php';
+session_start();
+$_SESSION['loginInfo']='';
+$_SESSION['']='';
+if($_SERVER['REQUEST_METHOD']=='POST'){
+$username=  mysqli_real_escape_string($mysqli,$_POST['Username']);
+$password=  mysqli_real_escape_string($mysqli,md5($_POST['Password']));/*
+ * encrypting password before comparing it with the one in the database
+ */
+$query="select user_type from users where user_name='$username' and password='$password'";
+$result= $mysqli->query($query);
+if(!$row=$result->fetch_assoc()){
+    $_SESSION['loginInfo']='Wrong Username or Password!';
+}else {
+    $user_type=$row['user_type'];
+    if($user_type=='admin'){
+        header("location:adminpage.php");
+    }else{
+          $_SESSION['loginInfo']='Welcome!';
+   header("location:booking.php");
+    }
+  
+}
+
+
+}
+?>
 <!DOCTYPE html>
+
+
 <html>
+    <link rel="stylesheet" a href="usermodule.css">
     <head>
         <meta charset="UTF-8">
         <title>EUVBS</title>
-		<link rel="stylesheet" href="styles.css">
     </head>
-    <body>
-        <?php
-		//begin a session
-		session_start();
-		require('connector.php');
-		
-		if (isset($_POST['username']) and isset($_POST['password'])){
-			$username = $_POST['username'];
-			$password = $_POST['password'];
-			
-			$pass = hash('sha256', $password);
-			
-			$query = "SELECT * FROM `users` WHERE user_name='$username' and password='$pass'";
-			
-			$result = mysqli_query($connection, $query) or die(mysqli_error($connection));
-			$count = mysqli_num_rows($result);
-			
-			if ($count == 1){
-				$_SESSION['username'] = $username;
-				header("Location: home.php");
-			}
-			else{
-				$error = "Invalid Password or Username.";
-				echo "<script>alert('$error');</script>";
-			}
-		}
-		
-		if (isset($_SESSION['username'])){
-			$username = $_SESSION['username'];
-			echo "<script>alert('$username you are logged in');</script>";
-		}
-        ?>
-		
-		<form class="form-signin" method="POST">
-			<h2 class="form-signin-heading">LOGIN</h2>
-			<div class="input-group">
-				<span class="input-group-addon" id="basic-addon1">USERNAME</span>
-				<input type="text" name="username" class="form-control" placeholder="Username" required><br><br>
-			</div>
-			<label for="inputPassword" class="sr-only">PASSWORD</label>
-			<input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required><br><br>
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button><br><br>
-			<a class="btn btn-lg btn-primary btn-block" href="register.php">Click here to register</a>
-		</form>
+    <body id="body">
+        <div class="loginpage">
+            <form action="index.php" method="POST" autocomplete="off">
+                <div id="title"><body><img src="images/egertonlogo.png" id="logo">Egerton University Vehicle Booking System(EUVBS): </br></br>Member Login</div>
+                <input type="text" name="Username" placeholder="Username" size="30" required/><br><br></br>
+                <input type="password" name="Password" placeholder="Password" size="30" required/><br><br></br>
+            <input type="submit" value="Log in" name="login"/>
+            </form></br>
+            <div id="info" ><strong><?=$_SESSION['loginInfo']?></strong></div></br>
+            <div id="register">Click here to <a href="SignUp.php">Register</a> an account</div></br>
+            
+        
+        </div>
     </body>
 </html>
