@@ -52,10 +52,57 @@ if(isset($_POST['perform'])){
             </form></div></div></head>
 <body id="body">
     </br></br></br>
-    <div id="bookings">Total Bookings:<br><br>
-        Total Vehicles:<br></br>
-        Total Drivers:<br><br>
-        Total Users:<br><br>
+    <div id="bookings">
+    <table border="1" align="center">
+            
+                <tr>
+                    <th>Item</th>
+                    <th>Totals</th>
+                </tr>
+            
+            
+                <tr>
+                    <td>Bookings</td>
+                    <td><div id="totals"><?php
+     $sql="select count('bookings_id') from bookings";
+        $result=$mysqli->query($sql);
+        $row=  mysqli_fetch_array($result);
+        echo "$row[0]";
+                
+        ?></div></td>
+                </tr>
+                <tr>
+                    <td>Vehicles</td>
+                    <td><div id="totals"><?php
+         $sql="select count('vehicle_id') from vehicles";
+        $result=$mysqli->query($sql);
+        $row=  mysqli_fetch_array($result);
+        echo "$row[0]";
+                
+        ?></div></td>
+                </tr>
+                <tr>
+                    <td>Drivers</td>
+                    <td><div id="totals"><?php
+         $sql="select count('driver_id') from drivers";
+        $result=$mysqli->query($sql);
+        $row=  mysqli_fetch_array($result);
+        echo "$row[0]";
+                
+        ?></div></td>
+                </tr>
+                <tr>
+                    <td>Users</td>
+                    <td><div id="totals"><?php 
+        $sql="select count('user_id') from users";
+        $result=$mysqli->query($sql);
+        $row=  mysqli_fetch_array($result);
+        echo "$row[0]";
+        ?></div></td>
+                </tr>
+            
+        </table><br><br>
+    </div>
     <div class="tasks"> <form action="adminpage.php" method="POST">
             </br>  
             Select an Operation to Perform:
