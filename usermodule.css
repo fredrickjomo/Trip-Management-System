@@ -81,9 +81,10 @@ SignUp Page design
     
 }
 #bookings{
-    text-align: center;
     font-size: 30px;
     font-family: monospace;
+    text-align: center;
+    
 }
 select{
     height: 30px;
@@ -122,6 +123,10 @@ input{
     color:red;
     text-decoration: #cc0033;
 }
+#totals{
+    color: #006666;
+}
+
 /*vehicleInfo page design*/
 .delete{
     color:red;
