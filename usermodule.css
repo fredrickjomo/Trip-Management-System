@@ -83,18 +83,19 @@ SignUp Page design
 #bookings{
     font-size: 30px;
     font-family: monospace;
-    text-align: center;
+    
     
 }
 select{
     height: 30px;
     border-radius:5px;
     width:200px;
+  
 }
 
 option{
     height:200px;
-    height: 500px;
+    width: 500px;
 }
 #submit{
     height: 30px;
@@ -125,6 +126,7 @@ input{
 }
 #totals{
     color: #006666;
+    text-align:center;
 }
 
 /*vehicleInfo page design*/
@@ -184,4 +186,22 @@ input[type=password]{
 .tableCols{
     color:black;
     text-decoration: #ccffcc;
+}
+/*DriverAssign Page design*/
+#assign{
+    border-radius: 5px;
+    background-color: gray;
+    float: right;
+    font-size: 35px;
+    text-align:right;
+}
+#label{
+    float: left;
+}
+input[type=date]{
+    text-align:center;
+    height:25px;
+    border-radius:5px;
+    width:200px;
+    font-size:20px;
 }
