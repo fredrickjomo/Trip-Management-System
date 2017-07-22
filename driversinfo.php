@@ -69,6 +69,7 @@ and open the template in the editor.
         $query="select *from drivers";
         $result= $mysqli->query($query);
        
+       
         if($result->num_rows>0){
             while ($row = $result->fetch_assoc()) {
            $driver_id=$row['driver_id'];
@@ -100,7 +101,7 @@ and open the template in the editor.
             <label for="driver_id" id="input">Driver Id:</label><input type="text" name="driver_id" value="" placeholder="Driver Id" /></br></br>
             <label for="driver_name" id="input">Driver Name:</label><input type="text" name="driver_name" value="" placeholder="Driver Name" /></br></br>
             <label for="driver_contact"id="input">Driver Contact:</label><input type="text" name="driver_contact" value="" placeholder="Driver Contact" /></br></br>
-          <label for="availablity" id="input"> Availability:</label><select name="availability">
+            <label for="availablity" id="input"> Availability:</label><select name="availability">
               <option value="">--Choose Availabity--</option>
         <option value="yes">Yes</option>
         <option value="no">No</option>
